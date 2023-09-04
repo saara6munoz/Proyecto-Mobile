@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Restablecer la contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-item class="fondo-blanco input ion-margin-top" lines="none">
+      <ion-input label="Usuario" [(ngModel)]="newPass" labelPlacement="floating"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input label="Nueva contraseña" type="password" labelPlacement="floating"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input label="Confirma la contraseña" type="password" labelPlacement="floating"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="changePassword()"> Aceptar </ion-button>
+  </div>
+  <ion-header collapse="condense">
+  </ion-header>
+</ion-content>
