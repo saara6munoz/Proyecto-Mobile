@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 
 
+
 @Component({
   selector: 'app-restablecer',
   templateUrl: './restablecer.page.html',
@@ -14,8 +15,44 @@ export class RestablecerPage implements OnInit {
   ngOnInit() {
   }
 
+
+  updateUserPassword(newPassword: string): void {
+    const userData = localStorage.getItem('usuario');
+
+    if(userData){
+      const usuario = JSON.parse(userData);
+      usuario.password = newPassword
+      const updatedUserData  = JSON.stringify(usuario);
+      localStorage.setItem('usuario', updatedUserData);
+      console.log(localStorage)
+
+    }
+  }
+
+  async updatePassword() {
+    this.updateUserPassword(this.newPass);
+    console.log(localStorage)
+
+    const alert = await this.alertController.create({
+      header: 'Tu contraseña se ha restablecido correctamente',
+      message: 'Ahora puedes volver a acceder con la nueva contraseña',
+      buttons: [
+        {
+          text: 'Aceptar', 
+          handler: () => {
+            this.navCtrl.navigateForward('/login')
+          }
+        }
+      ],
+    });
+    await alert.present();
+  }
+
   async changePassword(){
-    localStorage.setItem('password', JSON.stringify(this.newPass));
+    var usuarioString = localStorage.getItem('usuario');
+    var usuario = usuarioString ? JSON.parse(usuarioString) : null;
+
+    localStorage.setItem('usuario.password', JSON.stringify(this.newPass));
     console.log(this.newPass);
     console.log(localStorage);
 
