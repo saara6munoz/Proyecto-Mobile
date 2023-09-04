@@ -1,22 +1,26 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Restablecer la contraseña</ion-title>
+  <ion-toolbar class="fondo">
+    <ion-buttons>
+      <ion-back-button slot="start" icon="chevron-back-outline" defaultHref="/"></ion-back-button>
+      <ion-title>App</ion-title>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div>
-    <ion-item class="fondo-blanco input ion-margin-top" lines="none">
-      <ion-input label="Usuario" [(ngModel)]="newPass" labelPlacement="floating"></ion-input>
+<ion-content [fullscreen]="true" class="fondo-generico back-recovery">
+  <br>
+  <strong><h1 style="font-family: Arial, Helvetica, sans-serif; color: #3a281c; font-weight: 700" class="boton-centro">Restablecer Contraseña</h1></strong>
+  <br>
+  <div class="centrado">
+    <ion-item class="ion-margin-top input-login">
+      <ion-input label="Nueva contraseña" type="password" [(ngModel)]="newPass" labelPlacement="floating"></ion-input>
     </ion-item>
-    <ion-item lines="none">
-      <ion-input label="Nueva contraseña" type="password" labelPlacement="floating"></ion-input>
-    </ion-item>
-    <ion-item lines="none">
+    <ion-item class="ion-margin-top input-login">
       <ion-input label="Confirma la contraseña" type="password" labelPlacement="floating"></ion-input>
     </ion-item>
-    <ion-button expand="block" (click)="changePassword()"> Aceptar </ion-button>
+    <br>
+    <div class="boton-centro">
+      <ion-button class="boton" (click)="changePassword()"> Aceptar </ion-button>
+    </div>
   </div>
-  <ion-header collapse="condense">
-  </ion-header>
 </ion-content>

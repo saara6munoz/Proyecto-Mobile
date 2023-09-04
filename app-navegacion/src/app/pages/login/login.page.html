@@ -1,58 +1,37 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Login</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form [formGroup]="formularioLogin">
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input formControlName="nombre"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
-          <a [routerLink]="['/restablecer']">Olvidaste tu contraseña?</a>
-        </ion-item>
-      </form> <br>
-      <ion-button (click)="ingresar()">
-        Ingresar
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
-
-
-
-<!--<ion-header [translucent]="true">
   <ion-toolbar class="fondo">
-    <ion-title>login</ion-title>
+    <ion-buttons>
+      <ion-back-button slot="start" icon="chevron-back-outline" defaultHref="/"></ion-back-button>  
+      <ion-title>App</ion-title>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="fondo-blanco">
+<ion-content  [fullscreen]="true" class="fondo-generico background">
+  <br>
+  <strong><h1 style="font-family: Arial, Helvetica, sans-serif; color: #3a281c; font-weight: 700" class="boton-centro">Inicio de Sesión</h1></strong>
+  <br>
   <div class="centrado">
-    <ion-img src="assets/img-login.svg"></ion-img>
-    <ion-item class="fondo-blanco input ion-margin-top" lines="none">
-      <ion-input label="Usuario" [(ngModel)]="mdl_usuario" labelPlacement="floating"></ion-input>
-    </ion-item>
-    <ion-item class="fondo-blanco input ion-margin-top" lines="none">
-      <ion-input label="Contraseña" [(ngModel)]="mdl_pass" type="password" labelPlacement="floating"></ion-input>
-    </ion-item>
-    <ion-button class="fondo boton ion-margin-top" expand="block" (click)="navegar()"> Ingresar </ion-button>
+    <form [formGroup]="formularioLogin">
+      <ion-item class="ion-margin-top input-login">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-top input-login">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <br>
+      <div class="boton-right">
+        <a style="font-weight: 700; text-decoration:none; color:#3a281c" [routerLink]="['/registro']">¿No tienes cuenta?,¡Registrate!</a>
+        <br>
+        <br>
+        <a style="font-weight: 700; text-decoration:none; color:#3a281c" [routerLink]="['/restablecer']">¿Olvidaste tu contraseña?</a>
+      </div>
+      </form>
+    <br>
+    <div class="boton-centro">
+      <ion-button class="boton" (click)="ingresar()">Ingresar</ion-button>
+    </div>
   </div>
-  <ion-alert
-  [isOpen]="isAlertOpen"
-  header="Información"
-  message="Credenciales inválidas"
-  [buttons]="alertButtons"
-  (didDismiss)="setOpen(false)">
-  </ion-alert>
 </ion-content>
--->

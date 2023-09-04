@@ -26,31 +26,62 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 .fondo {
-    --background: #00f7ffab;
+    --background: #816645;
+    --color: #dfeeef;
+}
+
+.boton {
+    --background:#3a281c;
+    --color:#e7e7e7;
+}
+
+.fondo-generico {
+    --background: #d9c682;
     --color: #000000;
 }
 
-.input {
-    border: solid 2px rgb(97, 97, 97);
-    border-radius: 5px;
+.background {
+    --background: url(assets/img-login.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
 }
 
-.fondo {
-    --background: #00f7ffab;
-    --color: #000000;
+.back-registro {
+    --background: url(assets/img-registro.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
 }
 
-.fondo-blanco {
-    --background: #ffffff;
-    --color: #000000;
+.back-recovery {
+    --background: url(assets/img-recovery.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.back-main {
+    --background: url(assets/img-main.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.input-login {
+    --ion-item-background:rgba(32, 28, 28, 0.3); 
+    font-weight: 800;
+    --color:#ffffff;
 }
 
 .centrado {
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 65%;
 }
 
-.boton {
-    height: 55px;
+.boton-centro {
+    text-align: center;
+}
+
+.boton-right {
+    text-align: right;
 }

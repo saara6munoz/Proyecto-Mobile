@@ -48,7 +48,7 @@ export class RegistroPage implements OnInit {
           {
             text: 'Aceptar',
             handler: () => {
-              this.navCtrl.navigateForward('/bienvenida')
+              this.navCtrl.navigateForward('/login')
             }
           }
           ],

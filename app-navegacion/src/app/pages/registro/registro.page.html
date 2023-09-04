@@ -1,57 +1,35 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+  <ion-toolbar class="fondo">
+    <ion-buttons>
+      <ion-back-button slot="start" icon="chevron-back-outline" defaultHref="/"></ion-back-button>
+      <ion-title>App</ion-title>
     </ion-buttons>
-    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Registro</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
+<ion-content [fullscreen]="true" class="fondo-generico back-registro">
+  <br>
+  <strong><h1 style="font-family: Arial, Helvetica, sans-serif; color: #3a281c; font-weight: 700" class="boton-centro">Registro de Cuenta</h1></strong>
+  <br>
+  <div class="centrado">
       <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
-        <ion-item>
+        <ion-item class="ion-margin-top input-login">
           <ion-label position="floating">Nombre</ion-label>
           <ion-input formControlName="nombre"></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item class="ion-margin-top input-login">
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input formControlName="password" type="password" ></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item class="ion-margin-top input-login">
           <ion-label position="floating">Confirmar contraseña</ion-label>
           <ion-input formControlName="confirmacionPassword" type="password"></ion-input>
         </ion-item>
         <br>
-        <ion-button (click)="guardar()">Registrarse
-        </ion-button>
+        <div class="boton-centro">
+          <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
+        </div>
       </form>
-    </ion-card-content>
-  </ion-card>
+  </div>  
 </ion-content>
-<!--
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>registro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-
-<ion-content [fullscreen]="true" class="fondo-blanco">
-  <div class="centrado">
-    <ion-item class="fondo-blanco input ion-margin-top" lines="none">
-      <ion-input label="Usuario" [(ngModel)]="mdl_usuario_registro" labelPlacement="floating"></ion-input>
-    </ion-item>
-    <ion-item class="fondo-blanco input ion-margin-top" lines="none">
-      <ion-input label="Contraseña" [(ngModel)]="mdl_pass" type="password" labelPlacement="floating"></ion-input>
-    </ion-item>
-    <ion-button class="fondo boton ion-margin-top" expand="block" (click)="successful()"> Registrar </ion-button>
-  </div>
-</ion-content>
--->
-
