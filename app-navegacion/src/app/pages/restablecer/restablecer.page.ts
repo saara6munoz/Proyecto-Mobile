@@ -24,14 +24,12 @@ export class RestablecerPage implements OnInit {
       usuario.password = newPassword
       const updatedUserData  = JSON.stringify(usuario);
       localStorage.setItem('usuario', updatedUserData);
-      console.log(localStorage)
 
     }
   }
 
   async updatePassword() {
     this.updateUserPassword(this.newPass);
-    console.log(localStorage)
 
     const alert = await this.alertController.create({
       header: 'Tu contraseña se ha restablecido correctamente',
@@ -46,34 +44,7 @@ export class RestablecerPage implements OnInit {
       ],
     });
     await alert.present();
-  }
-
-  async changePassword(){
-    var usuarioString = localStorage.getItem('usuario');
-    var usuario = usuarioString ? JSON.parse(usuarioString) : null;
-
-    localStorage.setItem('usuario.password', JSON.stringify(this.newPass));
-    console.log(this.newPass);
-    console.log(localStorage);
-
-    const alert = await this.alertController.create({
-      header: 'Tu contraseña se ha restablecido correctamente',
-      message: 'Ahora puedes volver a acceder con la nueva contraseña',
-      buttons: [
-        {
-          text: 'Aceptar', 
-          handler: () => {
-            this.navCtrl.navigateForward('/login')
-          }
-        }
-      ],
-    });
-
-    await alert.present();
-
-  }
-
-  
+  }  
 
 }
 
