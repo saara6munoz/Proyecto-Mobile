@@ -14,10 +14,22 @@ export class RestablecerPage implements OnInit {
   ngOnInit() {
   }
 
-  async changePassword(){
-    localStorage.setItem('password', JSON.stringify(this.newPass));
-    console.log(this.newPass);
-    console.log(localStorage);
+  updateUserPassword(newPassword: string): void {
+    const userData = localStorage.getItem('usuario');
+
+    if(userData){
+      const usuario = JSON.parse(userData);
+      usuario.password = newPassword
+      const updatedUserData  = JSON.stringify(usuario);
+      localStorage.setItem('usuario', updatedUserData);
+      console.log(localStorage)
+
+    }
+  }
+
+  async updatePassword() {
+    this.updateUserPassword(this.newPass);
+    console.log(localStorage)
 
     const alert = await this.alertController.create({
       header: 'Tu contraseña se ha restablecido correctamente',
@@ -31,11 +43,7 @@ export class RestablecerPage implements OnInit {
         }
       ],
     });
-
     await alert.present();
-
   }
-
-  
 
 }

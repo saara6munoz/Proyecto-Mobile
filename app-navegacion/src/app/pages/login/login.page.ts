@@ -33,19 +33,12 @@ export class LoginPage implements OnInit {
     var f = this.formularioLogin.value;
 
     var usuarioString = localStorage.getItem('usuario');
-    var passwordString = localStorage.getItem('password');
-    var passSinString = JSON.parse(passwordString ?? 'null');
     var usuario = usuarioString ? JSON.parse(usuarioString) : null;
 
-
-    if (usuario.nombre == f.nombre && (f.password == usuario.password || f.password == passSinString)) //(passSinString === f.password ||
+    if (usuario.nombre == f.nombre && f.password == usuario.password)
     {
       this.navCtrl.navigateForward('/principal');
     }else{
-      console.log(passSinString);
-      console.log(f.password);
-      console.log(localStorage);
-      console.log(usuario.password);
       const alert = await this.alertController.create({
         header: 'Datos incorrectos',
         message: 'Los datos que ingresaste son incorrectos.',

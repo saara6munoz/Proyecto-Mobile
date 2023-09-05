@@ -41,13 +41,13 @@
 }
 
 .background {
-    --background: url(assets/img-login.svg) 0 0/100% 100% no-repeat;
+    --background: url(assets/img-logn.svg) 0 0/100% 100% no-repeat;
     background: #d9c682;
     opacity: 0.85;
 }
 
 .back-registro {
-    --background: url(assets/img-registro.svg) 0 0/100% 100% no-repeat;
+    --background: url(assets/img-mainb.svg) 0 0/100% 100% no-repeat;
     background: #d9c682;
     opacity: 0.85;
 }
@@ -60,6 +60,12 @@
 
 .back-main {
     --background: url(assets/img-main.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.back-welcome {
+    --background: url(assets/img-b.svg) 0 0/100% 100% no-repeat;
     background: #d9c682;
     opacity: 0.85;
 }
