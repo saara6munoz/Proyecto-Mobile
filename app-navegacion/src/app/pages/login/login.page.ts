@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
 
     var usuarioString = localStorage.getItem('usuario');
     var usuario = usuarioString ? JSON.parse(usuarioString) : null;
-
+    console.log(usuario)
     if (usuario.nombre == f.nombre && f.password == usuario.password)
     {
       this.navCtrl.navigateForward('/principal');

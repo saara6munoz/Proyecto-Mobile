@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,15 +8,17 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./bienvenida.page.scss'],
 })
 export class BienvenidaPage implements OnInit {
-  //usuario: string | null = null;
-  usuarioString = localStorage.getItem('usuario');
-  usuarioObj = this.usuarioString ? JSON.parse(this.usuarioString) : null;
+  usuarioString = localStorage.getItem('usuario'); 
+  usuarioObj = this.usuarioString ? JSON.parse(this.usuarioString) : null; // Protección anti nulos
 
-  usuario = this.usuarioObj.nombre; // Obtener el valor del usuario
+  usuario = this.usuarioObj.nombre; // Accedemos al atributo nombre para saludar
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }  
 
+  navegar(){
+    this.router.navigate(['login']);
+  }
 }

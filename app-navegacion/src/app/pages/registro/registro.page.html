@@ -13,9 +13,11 @@
   <strong><h1 style="font-family: Arial, Helvetica, sans-serif; color: #3a281c; font-weight: 700" class="boton-centro">Registro de Cuenta</h1></strong>
   <br>
   <div class="centrado">
+    <!--keyup.enter gatilla el evento cuando el usuario presione en enter-->
       <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
         <ion-item class="ion-margin-top input-login">
           <ion-label position="floating">Nombre</ion-label>
+          <!--formControlName: establece una conexión bidireccional entre el campo de entrada y el control del formulario-->
           <ion-input formControlName="nombre"></ion-input>
         </ion-item>
         <ion-item class="ion-margin-top input-login">

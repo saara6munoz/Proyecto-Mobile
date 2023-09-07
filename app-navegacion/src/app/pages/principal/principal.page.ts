@@ -28,5 +28,4 @@ export class PrincipalPage implements OnInit {
       this.color = 'light';
     }
   }
-  // this.color = this.color == 'light' ? 'danger' : 'light'; <-- es lo mismo que el if de arriba
 }
