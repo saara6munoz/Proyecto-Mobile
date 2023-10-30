@@ -1,0 +1,93 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+.fondo {
+    --background: #816645;
+    --color: #dfeeef;
+}
+
+.boton {
+    --background:#3a281c;
+    --color:#e7e7e7;
+}
+
+.fondo-generico {
+    --background: #d9c682;
+    --color: #000000;
+}
+
+.background {
+    --background: url(assets/img-logn.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.back-registro {
+    --background: url(assets/img-mainb.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.back-recovery {
+    --background: url(assets/img-recovery.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.back-main {
+    --background: url(assets/img-main.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.back-welcome {
+    --background: url(assets/img-b.svg) 0 0/100% 100% no-repeat;
+    background: #d9c682;
+    opacity: 0.85;
+}
+
+.input-login {
+    --ion-item-background:rgba(32, 28, 28, 0.3); 
+    font-weight: 800;
+    --color:#ffffff;
+}
+
+.centrado {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 65%;
+}
+
+.boton-centro {
+    text-align: center;
+}
+
+.boton-right {
+    text-align: right;
+}
