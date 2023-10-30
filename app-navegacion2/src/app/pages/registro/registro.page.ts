@@ -8,8 +8,6 @@ import {
 import { AlertController, NavController } from '@ionic/angular'; //AlertController para el manejo de mensajes emergentes y dialogos
 import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/services/api.service';
-//import { PacienteI } from '../../models/response.interface';
-import { ResponseI } from '../../models/response.interface';
 
 
 @Component({
@@ -43,12 +41,11 @@ export class RegistroPage implements OnInit {
 
   ngOnInit() {
   }
+
 // Las funciones asincronicas permiten que acciones se ejecuten en segundo plano sin interrumpir el hilo principal
-  async guardar(){
+  async newUsuario() {
     //Vamos a obtener el formulario del registro de nuestro HTML
-    var f = this.formularioRegistro.value;
-    // Es invalido si no se cumplen las validaciones definidas
-    if(this.formularioRegistro.invalid){
+    if (this.formularioRegistro.invalid) {// Es invalido si no se cumplen las validaciones definidas
       const alert = await this.alertController.create({
         header: 'Datos incompletos',
         message: 'Tienes que llenar todos los datos',
@@ -57,64 +54,64 @@ export class RegistroPage implements OnInit {
       // Queda a la espera de la alerta
       await alert.present();
       return;
-    }else{
-      const alert = await this.alertController.create({
-        header: 'Éxito',
-        message: 'Registro exitoso!',
-        buttons: [
-          {
-            text: 'Aceptar',
-            handler: () => {
-              this.navCtrl.navigateForward('/bienvenida')
-            }
-          }
-          ],
-      });
-  
-      await alert.present();
     }
-    // Esta variable almacena el objeto usuario con el nombre y la constraseña que obtiene del formulario 
-    var usuario = {
-      nombre: f.nombre,
-      password: f.password
-    }
-    // Se establece el item de usuario y convierte el objeto en un JSON
-    localStorage.setItem('usuario',JSON.stringify(usuario));
-  }
-
-  @Output()
-  addUserEventFromParent = new EventEmitter<Usuario>();
-
-  onSubmit() {
-    formularioRegistro: FormGroup;
-      this.addUserEventFromParent.emit(this.formularioRegistro.value);
-      console.log(this.formularioRegistro.value)
-      alert("estoy aqui")
-  }
-
-  newUsuario() {
     this.api.personaAlmacenar(
-      this.usuario, 
+      this.usuario,
       this.correo,
       this.contrasena,
       this.nombre,
-      this.apellido).subscribe(
-        // Manejar la respuesta si es necesario
-        (respuesta) => {
-          console.log('Usuario almacenado correctamente:', respuesta);
-        },
-        // Manejar errores si los hay
-        (error) => {
-          console.error('Error al almacenar usuario:', error);
+      this.apellido
+    ).subscribe(
+      async (respuestaExitosa: any) => { //any nunca es una buena practica
+        console.log(respuestaExitosa);
+        if(respuestaExitosa.result && respuestaExitosa.result.length > 0) {
+          const respuesta = respuestaExitosa.result[0].RESPUESTA;
+          if(respuesta === "OK"){
+            const alert = await this.alertController.create({
+              header: 'Éxito',
+              message: 'Registro exitoso!',
+              buttons: [
+                {
+                  text: 'Aceptar',
+                  handler: () => {
+                    this.navCtrl.navigateForward('/bienvenida');
+                  }
+                }
+              ]
+            });
+            await alert.present();
+            console.log("//redirige a todo bien")
+          }else if(respuesta === "ERR01"){
+            const alert = await this.alertController.create({
+              header: 'Precaución',
+              message: 'El Usuario ingresado ya existe, elige otro',
+              buttons: [
+                {
+                  text: 'Aceptar',
+                }
+              ]
+            });
+            await alert.present();
+            }else if (respuesta === "ERR02"){
+            const alert = await this.alertController.create({
+              header: 'Precaución',
+              message: 'El Correo ingresado ya existe, elige otro',
+              buttons: [
+                {
+                  text: 'Aceptar',
+                }
+              ]
+            });
+            await alert.present();
+          }
+        }else{
+            console.error('Respuesta inesperada de la API');
         }
-      );
-  }
-
-
-  postForm(form:Usuario){
-    this.api.postUsuario(form).subscribe(data => {
-      console.log(data)
-    })
-  }
-
+      },
+      (error) => {
+        console.error('Error al almacenar usuario:', error);
+        // Manejar errores aquí, si es necesario
+      }
+    );
+}
 }

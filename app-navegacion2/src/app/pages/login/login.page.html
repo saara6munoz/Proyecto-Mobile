@@ -11,12 +11,13 @@
   <div class="centrado">
     <form [formGroup]="formularioLogin">
       <ion-item class="ion-margin-top input-login">
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input formControlName="nombre"></ion-input>
+        <ion-label position="floating">Usuario</ion-label>
+        <!--formControlName: establece una conexión bidireccional entre el campo de entrada y el control del formulario-->
+        <ion-input [(ngModel)]="usuario" formControlName="usuario"></ion-input>
       </ion-item>
       <ion-item class="ion-margin-top input-login">
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input formControlName="password" type="password"></ion-input>
+        <ion-input [(ngModel)]="contrasena" labelPlacement="floating" formControlName="contrasena" type="password"></ion-input>
       </ion-item>
       <br>
       <div class="boton-right">

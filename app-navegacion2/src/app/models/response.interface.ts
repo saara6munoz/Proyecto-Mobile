@@ -1,4 +1,6 @@
-export interface ResponseI {
-    statuts: string;
-    result: any;
-}
+interface RespuestaAPI {
+    result: {
+      RESPUESTA: string;
+    }[];
+  }
+  

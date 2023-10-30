@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+
 
 @Component({
   selector: 'app-login',
@@ -15,21 +17,35 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+  usuario: string = '';
+  contrasena: string = '';
   formularioLogin: FormGroup;
 
-  constructor(private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private router: Router) { 
+  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private router: Router) { 
 
     this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("",Validators.required),
-      'password': new FormControl("",Validators.required)
+      'usuario': new FormControl("",Validators.required),
+      'contrasena': new FormControl("",Validators.required)
     })
-
   }
 
   ngOnInit() {
   }
 
   async ingresar(){
+    //llamada a la API
+    this.api.personalogin(
+      this.usuario,
+      this.contrasena
+    ).subscribe(
+      (respuesta) => {
+        console.log("todo bien desde el servidor!", respuesta);
+      },
+      (error) => {
+        console.log("todo mal desde el servidor!", error);
+      }
+    )
+
     var f = this.formularioLogin.value;
 
     var usuarioString = localStorage.getItem('usuario');
@@ -44,10 +60,8 @@ export class LoginPage implements OnInit {
         message: 'Los datos que ingresaste son incorrectos.',
         buttons: ['Aceptar']
       });
-  
       await alert.present();
     }
   }
-
 }
 

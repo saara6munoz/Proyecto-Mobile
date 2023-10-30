@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.models';
 import { UsuarioI } from '../models/usuario.interface';
-import { ResponseI } from '../models/response.interface';
-
 
 @Injectable({
   providedIn: 'root'
@@ -57,10 +55,6 @@ export class ApiService {
   }).pipe();
 }
 
-  postUsuario(form: UsuarioI):Observable<ResponseI>{
-    let direccion = this.ruta_usuarios + "usuarios";
-    return this.http.post<ResponseI>(direccion, form);
-  }
   }
 
 
