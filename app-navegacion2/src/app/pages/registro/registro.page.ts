@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -111,7 +111,6 @@ export class RegistroPage implements OnInit {
       (error) => {
         console.error('Error al almacenar usuario:', error);
         // Manejar errores aquí, si es necesario
-      }
-    );
-}
-}
+      });
+    }
+  }

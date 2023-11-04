@@ -39,7 +39,7 @@ export class ApiService {
 
   personalogin(usuario: string, contrasena: string) {
     return this.http.post(this.ruta_usuarios, {
-      nombreFuncion: 'Usuariologin',
+      nombreFuncion: 'UsuarioLogin',
       parametros: [
         usuario, contrasena
       ]
@@ -53,8 +53,8 @@ export class ApiService {
     usuario, contrasenaNueva, contrasenaActual
     ]
   }).pipe();
-}
-
   }
+
+}
 
 

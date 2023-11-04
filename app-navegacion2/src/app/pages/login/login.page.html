@@ -9,7 +9,7 @@
   <strong><h1 style="font-family: Arial, Helvetica, sans-serif; color: #3a281c; font-weight: 700" class="boton-centro">Inicio de Sesión</h1></strong>
   <br>
   <div class="centrado">
-    <form [formGroup]="formularioLogin">
+    <form [formGroup]="formularioLogin" (ngSubmit)="ingresar()">
       <ion-item class="ion-margin-top input-login">
         <ion-label position="floating">Usuario</ion-label>
         <!--formControlName: establece una conexión bidireccional entre el campo de entrada y el control del formulario-->
@@ -23,8 +23,6 @@
       <div class="boton-right">
         <a style="font-weight: 700; text-decoration:none; color:#3a281c" [routerLink]="['/registro']">¿No tienes cuenta?,¡Registrate!</a>
         <br>
-        <br>
-        <a style="font-weight: 700; text-decoration:none; color:#3a281c" [routerLink]="['/restablecer']">¿Olvidaste tu contraseña?</a>
       </div>
       </form>
     <br>

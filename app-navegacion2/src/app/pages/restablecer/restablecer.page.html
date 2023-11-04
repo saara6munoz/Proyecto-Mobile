@@ -1,9 +1,6 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar class="fondo">
-    <ion-buttons>
-      <ion-back-button slot="start" icon="chevron-back-outline" defaultHref="/"></ion-back-button>
       <ion-title>App</ion-title>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,15 +9,24 @@
   <strong><h1 style="font-family: Arial, Helvetica, sans-serif; color: #3a281c; font-weight: 700" class="boton-centro">Restablecer Contraseña</h1></strong>
   <br>
   <div class="centrado">
-    <ion-item class="ion-margin-top input-login">
-      <ion-input label="Nueva contraseña" type="password" [(ngModel)]="newPass" labelPlacement="floating"></ion-input>
-    </ion-item>
-    <ion-item class="ion-margin-top input-login">
-      <ion-input label="Confirma la contraseña" type="password" labelPlacement="floating"></ion-input>
-    </ion-item>
+    <form [formGroup]="formularioRestablecer" (ngSubmit)="updateUserPassword()">
+      <ion-item class="ion-margin-top input-login">
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input formControlName="usuario"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-top input-login">
+        <ion-label position="floating">Contraseña Actual</ion-label>
+        <ion-input formControlName="contrasenaActual" labelPlacement="floating" type="password"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-top input-login">
+        <ion-label position="floating">Nueva Contraseña</ion-label>
+        <ion-input formControlName="contrasenaNueva" labelPlacement="floating" type="password"></ion-input>
+      </ion-item>
+      <br>
+      <div class="boton-centro">
+        <ion-button expand="block" type="submit">Aceptar</ion-button>
+      </div>
+    </form>
     <br>
-    <div class="boton-centro">
-      <ion-button expand="block" (click)="updatePassword()"> Aceptar </ion-button>
-    </div>
   </div>
 </ion-content>
