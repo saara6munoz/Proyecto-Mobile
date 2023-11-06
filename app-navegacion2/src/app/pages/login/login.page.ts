@@ -6,8 +6,9 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { DbService } from 'src/app/services/db.service';
 
 
 @Component({
@@ -17,11 +18,11 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class LoginPage implements OnInit {
 
-  usuario: string = '';
-  contrasena: string = '';
+  usuario: string='';
+  contrasena: string= '';
   formularioLogin: FormGroup;
 
-  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private router: Router) { 
+  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private router: Router, private db:DbService) { 
 
     this.formularioLogin = this.fb.group({
       'usuario': new FormControl("",Validators.required),
@@ -38,30 +39,58 @@ export class LoginPage implements OnInit {
       this.usuario,
       this.contrasena
     ).subscribe(
-      (respuesta) => {
-        console.log("todo bien desde el servidor!", respuesta);
+      async (respuestaExitosa: any) => { //any nunca es una buena practica
+        console.log(respuestaExitosa);
+        if(respuestaExitosa.result && respuestaExitosa.result.length > 0) {
+          const respuesta = respuestaExitosa.result[0].RESPUESTA;
+          if(respuesta === "LOGIN OK"){
+            this.db.loginUsuario(this.usuario, this.contrasena).then(async data => {
+              if (data == 1) {
+                let parametros: NavigationExtras = {
+                  state: {
+                    usuario: this.usuario,
+                    contrasena: this.contrasena,
+                  }, replaceUrl: true
+                }
+                const alert = await this.alertController.create({
+                  header: 'Correcto',
+                  message: 'Inicio de sesión exitoso!',
+                  buttons: ['OK']
+                });
+                await alert.present();
+                this.db.almacenarSesion(this.usuario, this.contrasena)
+                this.router.navigate(['bienvenida'], parametros)
+              }else {
+                const alert = await this.alertController.create({
+                  header: 'Error en el inicio de sesion',
+                  message: 'Usuario o Contrasena incorrectos',
+                  buttons: ['OK']
+                });
+                await alert.present();
+              }
+            })
+          }else if(respuesta === "LOGIN NOK"){
+            const alert = await this.alertController.create({
+              header: 'Error',
+              message: 'Credenciales Inválidas',
+              buttons: [
+                {
+                  text: 'Aceptar',
+                }
+              ]
+            });
+            await alert.present();
+            }
+        }else{
+            console.error('Respuesta inesperada de la API');
+        }
       },
       (error) => {
-        console.log("todo mal desde el servidor!", error);
-      }
-    )
-
-    var f = this.formularioLogin.value;
-
-    var usuarioString = localStorage.getItem('usuario');
-    var usuario = usuarioString ? JSON.parse(usuarioString) : null;
-    console.log(usuario)
-    if (usuario.nombre == f.nombre && f.password == usuario.password)
-    {
-      this.navCtrl.navigateForward('/principal');
-    }else{
-      const alert = await this.alertController.create({
-        header: 'Datos incorrectos',
-        message: 'Los datos que ingresaste son incorrectos.',
-        buttons: ['Aceptar']
+        console.error('Error al almacenar usuario:', error);
+        // Manejar errores aquí, si es necesario
       });
-      await alert.present();
     }
+  registrar() {
+    this.router.navigate(['registro'], { replaceUrl: true });
   }
 }
-

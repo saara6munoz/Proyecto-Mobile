@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -8,6 +8,7 @@ import {
 import { AlertController, NavController } from '@ionic/angular'; //AlertController para el manejo de mensajes emergentes y dialogos
 import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/services/api.service';
+import { DbService } from 'src/app/services/db.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class RegistroPage implements OnInit {
   apellido: string = '';
 
 
-  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController ) {
+  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private db: DbService ) {
     // Crea y configura un FormGroup junto con sus controles y reglas de validación en un formulario.
     this.formularioRegistro = this.fb.group({
       //En esta sección se válida que se requieren los datos 
@@ -67,6 +68,13 @@ export class RegistroPage implements OnInit {
         if(respuestaExitosa.result && respuestaExitosa.result.length > 0) {
           const respuesta = respuestaExitosa.result[0].RESPUESTA;
           if(respuesta === "OK"){
+            this.db.almacenarUsuario(
+              this.usuario,
+              this.contrasena,
+              this.correo,
+              this.nombre,
+              this.apellido
+            );
             const alert = await this.alertController.create({
               header: 'Éxito',
               message: 'Registro exitoso!',
@@ -79,6 +87,7 @@ export class RegistroPage implements OnInit {
                 }
               ]
             });
+            
             await alert.present();
             console.log("//redirige a todo bien")
           }else if(respuesta === "ERR01"){
@@ -111,7 +120,6 @@ export class RegistroPage implements OnInit {
       (error) => {
         console.error('Error al almacenar usuario:', error);
         // Manejar errores aquí, si es necesario
-      }
-    );
-}
-}
+      });
+    }
+  }
