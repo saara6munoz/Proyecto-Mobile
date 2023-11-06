@@ -16,9 +16,9 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./restablecer.page.scss'],
 })
 export class RestablecerPage implements OnInit {
-  contrasenaNueva: string='';
+  contrasenaActual : string = '';
+  contrasenaNueva : string = '';
   usuario: string='';
-  contrasenaActual: string='';
   formularioRestablecer: FormGroup;
 
   constructor(private db:DbService, private api: ApiService, private alertController: AlertController,  private fb: FormBuilder, private navCtrl: NavController, private router:Router) {
@@ -31,11 +31,6 @@ export class RestablecerPage implements OnInit {
    }
 
   ngOnInit() {
-    let parametros = this.router.getCurrentNavigation();
-    if (parametros?.extras.state) {
-      this.usuario = parametros?.extras.state['usuario'];
-      this.contrasenaActual = parametros?.extras.state['contrasena'];
-    }
   }
   
 
@@ -52,12 +47,17 @@ export class RestablecerPage implements OnInit {
       await alert.present();
       return;
     }else{
-        if (this.contrasenaActual==this.contrasenaNueva){
+      this.usuario = this.formularioRestablecer.controls['usuario'].value;
+      this.contrasenaActual = this.formularioRestablecer.controls['contrasenaActual'].value;
+      this.contrasenaNueva = this.formularioRestablecer.controls['contrasenaNueva'].value;
+      if (this.contrasenaActual==this.contrasenaNueva){
           const alert = await this.alertController.create({
             header: 'Error en el cambio de contraseña',
             message: 'No puede ser la misma contraseña',
             buttons: ['OK']
           });
+        this.contrasenaActual = '';
+        this.contrasenaNueva = '';   
         await alert.present();
       }
     }
@@ -68,7 +68,6 @@ export class RestablecerPage implements OnInit {
       this.contrasenaActual
     ).subscribe(
       async (respuestaExitosa: any) => { //any nunca es una buena practica
-        console.log(respuestaExitosa);
         if(respuestaExitosa.result && respuestaExitosa.result.length > 0) {
           const respuesta = respuestaExitosa.result[0].RESPUESTA;
           if(respuesta === "OK"){

@@ -19,12 +19,9 @@
   <a style="font-weight: 700; text-decoration: none; color: #3a281c; text-align: center; display: block;" [routerLink]="['/restablecer']">¿Olvidaste tu contraseña?</a>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{ nombre }}</ion-card-title>
-      <ion-card-subtitle>{{ apellido }}</ion-card-subtitle>
+      <ion-card-title>Nombre: {{ nombre }}</ion-card-title>
+      <ion-card-subtitle>Apellido: {{ apellido }}</ion-card-subtitle>
+      <ion-card-subtitle>Correo: {{ correo }}</ion-card-subtitle>
     </ion-card-header>
-  
-    <ion-card-content>
-      {{ correo }}
-    </ion-card-content>
   </ion-card>
 </ion-content>

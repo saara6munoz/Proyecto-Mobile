@@ -17,9 +17,9 @@ export class ApiService {
     }).pipe();
   }
 
-  personalogin(usuario: string, contrasena: string) {
+  personaLogin(usuario: string, contrasena: string) {
     return this.http.post(this.ruta_usuarios, {
-      nombreFuncion: 'Usuariologin',
+      nombreFuncion: 'UsuarioLogin',
       parametros: [usuario, contrasena]
     }).pipe();
   }

@@ -18,9 +18,9 @@ export class ListarPage implements OnInit {
 
   ngOnInit() {
     //this.listarFeriados();
-    this.listarAves();
+    //this.listarAves();
   }
-
+  /*
   async listarUsuarios() {
     let data = this.apiService.listarUsuarios();
     let respuesta = await lastValueFrom(data);
@@ -55,6 +55,6 @@ export class ListarPage implements OnInit {
     for(let x = 0; x < json.length; x++) {
       this.lista_aves.push(json[x]);
     }
-  }
+  } */
 
 }

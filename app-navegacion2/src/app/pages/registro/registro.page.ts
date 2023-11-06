@@ -5,6 +5,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { NavigationExtras } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular'; //AlertController para el manejo de mensajes emergentes y dialogos
 import { Usuario } from 'src/app/models/usuario.models';
 import { ApiService } from 'src/app/services/api.service';
@@ -28,7 +29,7 @@ export class RegistroPage implements OnInit {
   apellido: string = '';
 
 
-  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private db: DbService ) {
+  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private db: DbService) {
     // Crea y configura un FormGroup junto con sus controles y reglas de validación en un formulario.
     this.formularioRegistro = this.fb.group({
       //En esta sección se válida que se requieren los datos 
@@ -75,6 +76,13 @@ export class RegistroPage implements OnInit {
               this.nombre,
               this.apellido
             );
+            let parametros : NavigationExtras = {
+              state:{
+                usuario: this.usuario,
+                contrasena: this.contrasena
+              },
+              replaceUrl: true
+            }
             const alert = await this.alertController.create({
               header: 'Éxito',
               message: 'Registro exitoso!',
@@ -82,7 +90,7 @@ export class RegistroPage implements OnInit {
                 {
                   text: 'Aceptar',
                   handler: () => {
-                    this.navCtrl.navigateForward('/bienvenida');
+                    this.navCtrl.navigateForward('/bienvenida', parametros);
                   }
                 }
               ]

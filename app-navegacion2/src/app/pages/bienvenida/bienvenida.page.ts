@@ -3,9 +3,9 @@ import { NavigationExtras, Router } from '@angular/router';
 import { DbService } from 'src/app/services/db.service';
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.page.html',
-  styleUrls: ['./principal.page.scss'],
+  selector: 'app-bienvenida',
+  templateUrl: './bienvenida.page.html',
+  styleUrls: ['./bienvenida.page.scss'],
 })
 export class BienvenidaPage implements OnInit {
   usuario: string = "";

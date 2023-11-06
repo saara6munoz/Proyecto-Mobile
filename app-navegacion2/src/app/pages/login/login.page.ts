@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
   contrasena: string= '';
   formularioLogin: FormGroup;
 
-  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController, private navCtrl: NavController, private router: Router, private db:DbService) { 
+  constructor(private api: ApiService, private fb: FormBuilder, private alertController: AlertController,
+     private navCtrl: NavController, private router: Router, private db:DbService) { 
 
     this.formularioLogin = this.fb.group({
       'usuario': new FormControl("",Validators.required),
@@ -35,12 +36,11 @@ export class LoginPage implements OnInit {
 
   async ingresar(){
     //llamada a la API
-    this.api.personalogin(
+    this.api.personaLogin(
       this.usuario,
       this.contrasena
     ).subscribe(
       async (respuestaExitosa: any) => { //any nunca es una buena practica
-        console.log(respuestaExitosa);
         if(respuestaExitosa.result && respuestaExitosa.result.length > 0) {
           const respuesta = respuestaExitosa.result[0].RESPUESTA;
           if(respuesta === "LOGIN OK"){
@@ -93,8 +93,4 @@ export class LoginPage implements OnInit {
   registrar() {
     this.router.navigate(['registro'], { replaceUrl: true });
   }
-<<<<<<< HEAD
 }
-=======
-
->>>>>>> 1eda3be410392ba40afcbf7d1103ef7e57820f70

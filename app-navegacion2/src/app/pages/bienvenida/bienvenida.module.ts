@@ -15,6 +15,6 @@ import { BienvenidaPage } from './bienvenida.page';
     IonicModule,
     BienvenidaPageRoutingModule
   ],
-  declarations: [BienvenidaPage]
+  declarations: [ BienvenidaPage ]
 })
 export class BienvenidaPageModule {}
