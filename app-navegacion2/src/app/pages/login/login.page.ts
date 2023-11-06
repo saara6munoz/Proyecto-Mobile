@@ -93,4 +93,8 @@ export class LoginPage implements OnInit {
   registrar() {
     this.router.navigate(['registro'], { replaceUrl: true });
   }
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> 1eda3be410392ba40afcbf7d1103ef7e57820f70
