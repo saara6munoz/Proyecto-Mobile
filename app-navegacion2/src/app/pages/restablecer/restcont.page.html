@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar class="fondo">
+      <ion-back-button slot="start" icon="chevron-back-outline" defaultHref="/"></ion-back-button>
+      <ion-title>App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" class="fondo-generico back-recovery">
+<br>  <strong><h1 style="font-family: Arial, Helvetica, sans-serif; color: #3a281c; font-weight: 700" class="boton-centro">Restablecer Contraseña</h1></strong>
+<br>
+<div class="centrado">
+<ion-item class="ion-margin-top input-login">
+  <ion-label position="floating">Contraseña Actual</ion-label>
+  <ion-input labelPlacement="floating" [(ngModel)]="contrasena" type="password">
+  </ion-input>
+</ion-item>
+<ion-item class="ion-margin-top input-login">
+  <ion-label position="floating">Nueva Contraseña</ion-label>
+  <ion-input labelPlacement="floating" [(ngModel)]="contrasenanueva" type="password">
+  </ion-input>
+</ion-item>
+<div class="boton-centro">
+  <ion-button class="boton" (click)="confirmar()">Cambiar contraseña</ion-button>
+</div>
+</div>
+</ion-content>
